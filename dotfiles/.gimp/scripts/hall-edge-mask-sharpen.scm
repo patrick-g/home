@@ -91,7 +91,7 @@
                                              80.0
                                              VALUE-MODE)))
          (sharpen-layer-mask (car (gimp-layer-create-mask sharpen-layer
-                                                          WHITE-MASK))))
+                                                          ADD-WHITE-MASK))))
 
     (gimp-image-undo-group-start image)
 
@@ -115,7 +115,7 @@
     (plug-in-edge TRUE edge-image edge-drawable edge-amount 1 0)
     (if (= (car (gimp-image-base-type image)) RGB)
         (gimp-image-convert-grayscale edge-image))
-    (gimp-levels edge-drawable VALUE-LUT 40 200 0.90 0 255)
+    (gimp-levels edge-drawable HISTOGRAM-VALUE 40 200 0.90 0 255)
     (plug-in-gauss-iir2 TRUE edge-image edge-drawable blur-radius blur-radius)
     (gimp-levels-auto edge-drawable)
 
